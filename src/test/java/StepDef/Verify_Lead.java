@@ -1,6 +1,8 @@
 package StepDef;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
@@ -17,6 +19,7 @@ public class Verify_Lead extends BaseClass
 {
 
 	String errorMessage="jd";
+	String phone;
 
 		@Given("User should be on add lead page")
 		public void user_should_be_on_add_lead_page() throws InterruptedException 
@@ -230,7 +233,6 @@ public class Verify_Lead extends BaseClass
 		   a.assertEquals(userAssign, true);
 		   a.assertEquals(leadSource, true);
 		   a.assertAll();
-		   System.out.println("Pass");
 		}
 		@Then("All field should be enabled")
 		public void all_field_should_be_enabled() {
@@ -256,45 +258,74 @@ public class Verify_Lead extends BaseClass
 			a.assertNotEquals(project, "");
 		//	a.assertNotEquals(lead_source, "null");
 			a.assertNotEquals(userAssign, "");
-			a.assertAll();
-			System.out.println("Pass");    
+			a.assertAll();  
 		}
 		@When("Check lead personal data section")
 		public void check_lead_personal_data_section() throws InterruptedException {
-		    
-		    ld.leadPersonalData_Box.click();
-		    Thread.sleep(1000);
+			A.sendKeys(Keys.PAGE_DOWN).perform();
+			Thread.sleep(2000);
+			j.executeScript("arguments[0].click(true)", (ld.leadPersonalData_Box));
+//			A.scrollToElement(ld.leadPersonalData_Box).pause(Duration.ofSeconds(2)).click(ld.leadPersonalData_Box).build().perform();
+		//    ld.leadPersonalData_Box.click();
+		    Thread.sleep(2000);
 		    j.executeScript("window.scrollBy(0, 1000)");
-			System.out.println("Pass");  
 		}
-		@Then("Field of \\(Name, Phone, Alternative no, Select profession, Select living mode, Current address, Pin code, Area, city, District, State, Contry) should be displyed under leads personal data section")
+		@Then("Field of \\(Name, Phone, Alternative no, Select profession, Select living mode, Current address, Pin code, Area, city, District, State, Contry) should be displyed and enabled under leads personal data section")
 		public void field_of_name_phone_alternative_no_select_profession_select_living_mode_current_address_pin_code_area_city_district_state_contry_should_be_displyed_under_leads_personal_data_section() throws InterruptedException {
 		    Thread.sleep(2000);
-		    boolean name=ld.name.isDisplayed();
-		    boolean phone= ld.phone.isDisplayed();
-		    boolean professionDropdown= ld.professionDropdown.isDisplayed();
-		    boolean addProfessionIcon=ld.addProfessionIcon.isDisplayed();
-		    boolean livingModeDropdown= ld.livingModeDropdown.isDisplayed();
-		    boolean address=ld.address.isDisplayed();
-		    boolean pinCode= ld.pinCode.isDisplayed();
-		    boolean areaDropdown=ld.areaDropdown.isDisplayed();
-		    boolean cityDropdown=ld.city.isDisplayed();
-		    boolean district=ld.district.isDisplayed();
-		    boolean state=ld.state.isDisplayed();
-		    boolean country=ld.country.isDisplayed();   
+		    boolean nameDiplayed=ld.name.isDisplayed();
+		    boolean phoneDiplayed= ld.phone.isDisplayed();
+		    boolean professionDropdownDiplayed= ld.professionDropdown.isDisplayed();
+		    boolean addProfessionIconDisplayed=ld.addProfessionIcon.isDisplayed();
+		    boolean livingModeDropdownDiplayed= ld.livingModeDropdown.isDisplayed();
+		    boolean addressDisplayed=ld.address.isDisplayed();
+		    boolean pinCodeDiplayed= ld.pinCode.isDisplayed();
+		    boolean areaDisplayed=ld.areaDropdown.isDisplayed();
+		    boolean cityDropdownDisplayed=ld.city.isDisplayed();
+		    boolean districtDiplayed=ld.district.isDisplayed();
+		    boolean stateDiplayed=ld.state.isDisplayed();
+		    boolean countryDiplayed=ld.country.isDisplayed();   
 		    
-		    a.assertEquals(name, true);
-		    a.assertEquals(phone, true);
-		    a.assertEquals(professionDropdown, true);
-		    a.assertEquals(addProfessionIcon, true);
-		    a.assertEquals(livingModeDropdown, true);
-		    a.assertEquals(address, true);
-		    a.assertEquals(pinCode, true);
-		    a.assertEquals(areaDropdown, true);
-		    a.assertEquals(cityDropdown, true);
-		    a.assertEquals(district, true);
-		    a.assertEquals(state, true);
-		    a.assertEquals(country, true);
+		    boolean nameEnabled=ld.name.isEnabled();
+		    boolean phoneEnabled= ld.phone.isEnabled();
+		    boolean professionDropdownEnabled= ld.professionDropdown.isEnabled();
+		    boolean addProfessionIconEnabled=ld.addProfessionIcon.isEnabled();
+		    boolean livingModeDropdownEnabled=ld.livingModeDropdown.isEnabled();
+		    boolean addressEnabled=ld.address.isEnabled();
+		    boolean pinCodeEnabled=ld.pinCode.isEnabled();
+		    boolean areaEnabled=ld.areaDropdown.isEnabled();
+		    boolean cityDropdownEnabled=ld.city.isEnabled();
+		    boolean districtEnabled=ld.district.isEnabled();
+		    boolean stateEnabled=ld.state.isEnabled();
+		    boolean countryEnabled=ld.country.isEnabled(); 
+		    
+		    a.assertEquals(nameDiplayed, true);
+		    a.assertEquals(phoneDiplayed, true);
+		    a.assertEquals(professionDropdownDiplayed, true);
+		    a.assertEquals(addProfessionIconDisplayed, true);
+		    a.assertEquals(addProfessionIconDisplayed, true);
+		    a.assertEquals(livingModeDropdownDiplayed, true);
+		    a.assertEquals(addressDisplayed, true);
+		    a.assertEquals(pinCodeDiplayed, true);
+		    a.assertEquals(areaDisplayed, true);
+		    a.assertEquals(cityDropdownDisplayed, true);
+		    a.assertEquals(districtDiplayed, true);
+		    a.assertEquals(stateDiplayed, true);
+		    a.assertEquals(countryDiplayed, true);
+		    
+		    a.assertEquals(nameEnabled, true);
+		    a.assertEquals(phoneEnabled, true);
+		    a.assertEquals(professionDropdownEnabled, true);
+		    a.assertEquals(addProfessionIconEnabled, true);
+		    a.assertEquals(addProfessionIconEnabled, true);
+		    a.assertEquals(livingModeDropdownEnabled, true);
+		    a.assertEquals(addressEnabled, true);
+		    a.assertEquals(pinCodeEnabled, true);
+		    a.assertEquals(areaEnabled, true);
+		    a.assertEquals(cityDropdownEnabled, true);
+		    a.assertEquals(districtEnabled, true);
+		    a.assertEquals(stateEnabled, true);
+		    a.assertEquals(countryEnabled, true);
 		    
 		    a.assertAll();
 			System.out.println("Pass");  
@@ -304,7 +335,7 @@ public class Verify_Lead extends BaseClass
 		public void name_and_phone_no_fields_should_be_mandatory() throws InterruptedException {
 		   String name= ld.name.getAttribute("value");
 		   
-		   ld.name.clear();
+//		   ld.name.clear();
 		   ld.name.sendKeys(Keys.CONTROL+"a"+Keys.DELETE);
 		 
 		   Thread.sleep(1000);
@@ -352,6 +383,7 @@ public class Verify_Lead extends BaseClass
 			catch(NoSuchElementException e) {a.assertTrue(true);}
 			a.assertEquals(errorMessage, "Pincode is required");
 			 
+			
 			ld.pinCode.sendKeys("413411");
 			Wait.explicitWait(ld.updateButton, 5, driver);
 			ld.updateButton.click();
@@ -362,7 +394,6 @@ public class Verify_Lead extends BaseClass
 		}
 		@Then("Data of fields \\(District, City, State and Contry) should be come automatically, when enter pin code and select area")
 		public void data_of_fields_district_city_state_and_contry_should_be_come_automatically_when_enter_pin_code_and_select_area() throws InterruptedException {
-			ld.pinCode.sendKeys("413411");
 			ld.areaDropdown.click();
 			Thread.sleep(1000);
 			ld.areaDropdown_KV_Nagar.click();
@@ -421,21 +452,157 @@ public class Verify_Lead extends BaseClass
 		   }
 		   a.assertAll(); 
 		}
-		@Then("Field of \\(Area of interest, Required Plot size, Budget) should be displayed under lead requirement section")
+		@Then("Field of \\(Area of interest, Required Plot size, Budget) should be displayed and enabled under lead requirement section")
 		public void field_of_area_of_interest_required_plot_size_budget_should_be_displayed_under_lead_requirement_section() {
 		   boolean areaDisplay=ld.areaOfInterest.isDisplayed();
 		   boolean plotSizeDisplay=ld. plotSizeDropdown.isDisplayed();
 		   boolean budgetDisplay=ld.budgetDropdown.isDisplayed();
 		   
+		   boolean areaEnabled=ld.areaOfInterest.isEnabled();
+		   System.out.println(areaEnabled);
+		   boolean plotSizeEnabled=ld. plotSizeDropdown.isEnabled();
+		   boolean budgetEnabled=ld.budgetDropdown.isEnabled();
+		   
 		   a.assertEquals(areaDisplay, true);
 		   a.assertEquals(plotSizeDisplay, true);
 		   a.assertEquals(budgetDisplay, true);
 		   
+		   a.assertEquals(areaEnabled, true);
+		   a.assertEquals(plotSizeEnabled, true);
+		   a.assertEquals(budgetDisplay, true);
+		   
 		   a.assertAll();
 		 }
-		@Then("Lead requirement Data is coming as same whichever is select at the time of add lead")
+		@Then("Lead requirement data is coming as same whichever is select at the time of add lead")
 		public void lead_requirement_data_is_coming_as_same_whichever_is_select_at_the_time_of_add_lead() {
+		
+		}
+		
+		/// Edit prebooked and booked lead /////////////////////////////////
+		
+	
+		@Given("User should be on edit prebooked or booked lead page {string}")
+		public void user_should_be_on_edit_prebooked_or_booked_lead_page(String Status) throws InterruptedException {
+			Thread.sleep(2000);
+			if (Status.equals("Prebook")) {
+				driver.findElement(By.xpath("(//div[@routerlink='/lead/lead'])[4]")).click();
+			}
+			else
+			{
+				driver.findElement(By.xpath("(//div[@routerlink='/lead/lead'])[5]")).click();
+			}
 			
+			Thread.sleep(2000);
+			j.executeScript("arguments[0].click(true);", driver.findElement(By.xpath("(//button[@class='pushable close-btn ng-star-inserted'])[2]")));
+		   
+			String editLead=driver.findElement(By.xpath("//div[text()='Edit Lead']")).getText();
+			a.assertEquals(editLead, "Edit Lead");
+			a.assertAll();
+		}
+		@When("Check disable or not editable fields")
+		public void check_disable_or_not_editable_fields() {
+		    
+		   
+		}
+		@Then("Contactibility field should be disabled")
+		public void contactibility_field_should_be_disabled() {
+		    
+		   boolean contactability= ld.contactabilityDropdown.isDisplayed();
+		   a.assertEquals(contactability, true);
+		   a.assertAll();
+		}
+		@Then("Status field should be disabled")
+		public void status_field_should_be_disabled() {
+		    
+		   boolean status= ld.statusDropdown.isDisplayed();
+		   a.assertEquals(status, true);
+		   a.assertAll();
+		}
+		@Then("Mobile no field should be disabled")
+		public void mobile_no_field_should_be_disabled() throws InterruptedException {   
+			Thread.sleep(1000);
+			j.executeScript("arguments[0].click(true)", ld.leadPersonalData_Box);
+			Wait.explicitWait(ld.phone, 5, driver);
+		    ld.phone.sendKeys(Keys.CONTROL+"a"+Keys.DELETE);
+		    this.phone= ld.phone.getAttribute("value");
+		    System.out.println(phone);
+		    a.assertNotEquals(phone, "");
+		    a.assertAll();
+		}
+		@When("Check mode of interested field")
+		public void check_mode_of_interested_field() {
+		    
+		    
+		}
+		@Then("Checkbox of interest should be come as selected by default")
+		public void checkbox_of_interest_should_be_come_as_selected_by_default() throws InterruptedException {
+			 Thread.sleep(2000); j.executeScript("window.scrollBy(0,-1000)");
+			 Thread.sleep(2000);
+			 String checkboxInterest=driver.findElement(By.xpath("//mat-checkbox//input[@type='checkbox']")).getAttribute("aria-checked");
+			 a.assertEquals(checkboxInterest, "true");
+			 a.assertAll();
+		}
+		@When("User deselect the checkbox of interested")
+		public void user_deselect_the_checkbox_of_interested() throws InterruptedException {  
+			Thread.sleep(1000);
+		    driver.findElement(By.xpath("//input[@formcontrolname='mode_of_interest'] / parent :: div // mat-checkbox // input /parent :: span / parent :: label / parent :: mat-checkbox")).click();
+		}
+		@Then("Open property details pop up and show disclaimer message \\(Property already prebook or book, firstly release all properties)")
+		public void open_property_details_pop_up_and_show_disclaimer_message_property_already_prebook_or_book_firstly_release_all_properties() {
+		    
+		    
+		}
+		@Then("After release all properties, then user will able to convert into not interested lead")
+		public void after_release_all_properties_then_user_will_able_to_convert_into_not_interested_lead() {
+		    
+		    
+		}
+		@Then("Category field hide")
+		public void category_field_hide() {
+		   boolean displayed= driver.findElement(By.xpath("//mat-select[@formcontrolname='category']")).isDisplayed();
+		   a.assertEquals(displayed, false);
+		   a.assertAll();
+		    
+		}
+		@Then("Next followup date field come as non mandatory")
+		public void next_followup_date_field_come_as_non_mandatory() {
+			String mandatory=ld.Calender_follow_up_date.getAttribute("aria-invalid");
+			a.assertEquals(mandatory, "false");
+			a.assertAll();
+		    
+		}
+		@When("Check category field dropdown")
+		public void check_category_field_dropdown() throws InterruptedException {
+		    
+		    driver.navigate().refresh();
+		    Thread.sleep(2000);
+		}
+		@When("Check select status field")
+		public void check_select_status_field() {
+		    
+		    
+		}
+		@Then("It should be disabled")
+		public void it_should_be_disabled() {
+		   String disable= driver.findElement(By.xpath("//mat-select[@formcontrolname='status']")).getAttribute("aria-disabled");
+		    a.assertEquals(disable, "true");
+		    a.assertAll();    
+		}
+		
+		@When("Check next followup date field")
+		public void check_next_followup_date_field() throws InterruptedException {
+		    Thread.sleep(1000);
+		    j.executeScript("window.scrollBy(0, 1000)");
+			 Thread.sleep(2000);
+			 driver.findElement(By.xpath("//span[contains(text(),'Update')]")).click();
+			 
+		}
+		@Then("It come as mandatory by default")
+		public void it_come_as_mandatory_by_default() throws InterruptedException {
+			Thread.sleep(500);
+			String errorMessage= driver.findElement(By.xpath("//mat-error")).getText();
+			a.assertEquals(errorMessage, "Follow-up date is required !");
+			a.assertAll();
 		}
 			
 }

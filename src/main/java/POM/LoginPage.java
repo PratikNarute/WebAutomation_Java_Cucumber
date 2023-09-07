@@ -34,6 +34,7 @@ public class LoginPage {
 	 {
 		 
 		 username.sendKeys("pratik@kolonizer.com");
+		 
 	 }
 	 
 	 public void password()
@@ -52,13 +53,7 @@ public class LoginPage {
 		 loginPassword.sendKeys("Superadmin360@SA");
 		 loginbutton.click();
 	 }
-	 public void navigateToHomePageOfCRM() throws InterruptedException
-	 {
-		 Thread.sleep(3000);
-		 String url = driver.getCurrentUrl();
-		 a.assertEquals(url, "http://devdreamcity.kolonizer.in/dashboard");
-		 a.assertAll();
-	 }
+
 	 public void username(String mail)
 	 {	 
 		 username.sendKeys(mail);
